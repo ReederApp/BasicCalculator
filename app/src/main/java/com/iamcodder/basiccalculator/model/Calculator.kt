@@ -1,4 +1,7 @@
-package com.iamcodder.basiccalculator
+package com.iamcodder.basiccalculator.model
+
+import com.iamcodder.basiccalculator.enums.CalculateKey
+import com.iamcodder.basiccalculator.interfaces.Calculate
 
 class Calculator : Calculate {
 
@@ -22,7 +25,7 @@ class Calculator : Calculate {
         result = numberOne * numberTwo
     }
 
-    override fun equals(key: CalculateKey): Double {
+    override fun result(key: CalculateKey): Double {
         when (key) {
             CalculateKey.SUM -> sum()
             CalculateKey.DIVIDE -> divide()

@@ -1,10 +1,13 @@
-package com.iamcodder.basiccalculator
+package com.iamcodder.basiccalculator.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.widget.addTextChangedListener
+import com.iamcodder.basiccalculator.R
 import com.iamcodder.basiccalculator.databinding.ActivityMainBinding
+import com.iamcodder.basiccalculator.enums.CalculateKey
+import com.iamcodder.basiccalculator.model.Calculator
 
 class MainActivity : AppCompatActivity() {
 
@@ -121,7 +124,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun resultButton() {
         binding.btnCalculate.setOnClickListener {
-            binding.txtResult.text = "${calc.equals(firstKey)}"
+            binding.txtResult.text = "${calc.result(firstKey)}"
         }
     }
 }

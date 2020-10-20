@@ -1,4 +1,4 @@
-package com.iamcodder.basiccalculator
+package com.iamcodder.basiccalculator.enums
 
 enum class CalculateKey {
     SUM {

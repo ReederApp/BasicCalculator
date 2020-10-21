@@ -8,6 +8,8 @@ interface Calculate {
     fun minus()
     fun divide()
     fun multiply()
+    fun percentage()
+    fun clear()
     fun result(key: CalculateKey): Double
 
 }

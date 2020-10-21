@@ -25,12 +25,24 @@ class Calculator : Calculate {
         result = numberOne * numberTwo
     }
 
+    override fun percentage() {
+        result = numberOne % numberTwo
+    }
+
+    override fun clear() {
+        numberOne = 0.0
+        numberTwo = 0.0
+        result = 0.0
+    }
+
     override fun result(key: CalculateKey): Double {
         when (key) {
             CalculateKey.SUM -> sum()
             CalculateKey.DIVIDE -> divide()
             CalculateKey.MULTIPLY -> multiply()
             CalculateKey.MINUS -> minus()
+            CalculateKey.PERCENTAGE -> percentage()
+            CalculateKey.CLEAR -> clear()
             else -> throw Throwable("Calculator error")
         }
         return result

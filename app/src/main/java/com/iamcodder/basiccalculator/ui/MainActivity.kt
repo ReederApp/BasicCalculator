@@ -11,10 +11,8 @@ import com.iamcodder.basiccalculator.model.Calculator
 
 class MainActivity : AppCompatActivity() {
 
-    private val TAG = "MainActivity"
     private lateinit var binding: ActivityMainBinding
     private var firstKey = CalculateKey.SUM
-    private var secondKey = firstKey
     private val calc by lazy { Calculator() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,15 +20,9 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
-        binding.btnSum.setBackgroundColor(
-            ContextCompat.getColor(
-                this,
-                R.color.teal_200
-            )
-        )
+        binding.btnSum.setBackgroundColor(ContextCompat.getColor(this, R.color.teal_200))
         edxListener()
-        roundBtnClick()
-        resultButton()
+        btnClick()
     }
 
     private fun edxListener() {
@@ -48,19 +40,50 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun roundBtnClick() {
+    private fun btnClick() {
         binding.btnSum.setOnClickListener {
             setButonBdColor(firstKey, CalculateKey.SUM)
         }
         binding.btnDivide.setOnClickListener {
             setButonBdColor(firstKey, CalculateKey.DIVIDE)
-
         }
         binding.btnMinus.setOnClickListener {
             setButonBdColor(firstKey, CalculateKey.MINUS)
         }
         binding.btnMultiply.setOnClickListener {
             setButonBdColor(firstKey, CalculateKey.MULTIPLY)
+        }
+        binding.btnPercentage.setOnClickListener {
+            setButonBdColor(firstKey, CalculateKey.PERCENTAGE)
+        }
+        binding.btnClear.setOnClickListener {
+            setButonBdColor(firstKey, CalculateKey.CLEAR)
+            txtClear()
+            setButonBdColor(firstKey, CalculateKey.SUM)
+        }
+        binding.btnCalculate.setOnClickListener {
+            setTxt()
+        }
+    }
+
+    private fun txtClear() {
+        binding.numberOne.text?.clear()
+        binding.numberTwo.text?.clear()
+        binding.txtResult.text = ""
+    }
+
+    private fun setTxt() {
+        if (!binding.numberOne.text.isNullOrEmpty() && !binding.numberTwo.text.isNullOrEmpty()) {
+            var result = calc.result(firstKey).toString()
+            val splittedResult = result.split(".")
+            if (splittedResult[1].length > 5) {
+                result =
+                    splittedResult[0] + "." + splittedResult[1][0] + splittedResult[1][1] + splittedResult[1][2] +
+                            splittedResult[1][3] + splittedResult[1][4]
+            } else if (splittedResult[1].length == 1 && splittedResult[1] == "0") {
+                result = splittedResult[0]
+            }
+            binding.txtResult.text = result
         }
     }
 
@@ -85,6 +108,18 @@ class MainActivity : AppCompatActivity() {
                 )
             )
             CalculateKey.MULTIPLY -> binding.btnMultiply.setBackgroundColor(
+                ContextCompat.getColor(
+                    this,
+                    R.color.teal_200
+                )
+            )
+            CalculateKey.PERCENTAGE -> binding.btnPercentage.setBackgroundColor(
+                ContextCompat.getColor(
+                    this,
+                    R.color.teal_200
+                )
+            )
+            CalculateKey.CLEAR -> binding.btnClear.setBackgroundColor(
                 ContextCompat.getColor(
                     this,
                     R.color.teal_200
@@ -117,14 +152,21 @@ class MainActivity : AppCompatActivity() {
                     R.color.white
                 )
             )
+            CalculateKey.PERCENTAGE -> binding.btnPercentage.setBackgroundColor(
+                ContextCompat.getColor(
+                    this,
+                    R.color.white
+                )
+            )
+            CalculateKey.CLEAR -> binding.btnClear.setBackgroundColor(
+                ContextCompat.getColor(
+                    this,
+                    R.color.white
+                )
+            )
             else -> throw Throwable("Bd error")
         }
         this.firstKey = secondKey
     }
 
-    private fun resultButton() {
-        binding.btnCalculate.setOnClickListener {
-            binding.txtResult.text = "${calc.result(firstKey)}"
-        }
-    }
 }

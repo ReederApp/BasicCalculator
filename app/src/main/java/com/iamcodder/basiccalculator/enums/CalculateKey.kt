@@ -13,8 +13,11 @@ enum class CalculateKey {
     MULTIPLY {
         override fun key() = 3
     },
-    EQUALS {
+    PERCENTAGE {
         override fun key() = 4
+    },
+    CLEAR {
+        override fun key() = 5
     };
 
     abstract fun key(): Int

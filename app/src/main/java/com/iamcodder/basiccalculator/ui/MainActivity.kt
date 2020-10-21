@@ -20,7 +20,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
-        binding.btnSum.setBackgroundColor(ContextCompat.getColor(this, R.color.teal_200))
+        binding.btnSum.setBackgroundColor(ContextCompat.getColor(this, R.color.white))
         edxListener()
         btnClick()
     }

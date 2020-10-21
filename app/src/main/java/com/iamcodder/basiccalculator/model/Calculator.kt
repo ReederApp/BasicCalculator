@@ -10,23 +10,23 @@ class Calculator : Calculate {
     private var result: Double = 0.0
 
     override fun sum() {
-        result = numberOne + numberTwo
+        result = numberOne.plus(numberTwo)
     }
 
     override fun minus() {
-        result = numberOne - numberTwo
+        result = numberOne.minus(numberTwo)
     }
 
     override fun divide() {
-        result = numberOne / numberTwo
+        result = numberOne.div(numberTwo)
     }
 
     override fun multiply() {
-        result = numberOne * numberTwo
+        result = numberOne.times(numberTwo)
     }
 
     override fun percentage() {
-        result = numberOne % numberTwo
+        result = numberOne.rem(numberTwo)
     }
 
     override fun clear() {

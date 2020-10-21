@@ -73,18 +73,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setTxt() {
-        if (!binding.numberOne.text.isNullOrEmpty() && !binding.numberTwo.text.isNullOrEmpty()) {
-            var result = calc.result(firstKey).toString()
-            val splittedResult = result.split(".")
-            if (splittedResult[1].length > 5) {
-                result =
-                    splittedResult[0] + "." + splittedResult[1][0] + splittedResult[1][1] + splittedResult[1][2] +
-                            splittedResult[1][3] + splittedResult[1][4]
-            } else if (splittedResult[1].length == 1 && splittedResult[1] == "0") {
-                result = splittedResult[0]
-            }
-            binding.txtResult.text = result
-        }
+        val res = calc.result(firstKey)
+        binding.txtResult.text = calc.result(firstKey).toString()
     }
 
     private fun setButonBdColor(firstKey: CalculateKey, secondKey: CalculateKey) {

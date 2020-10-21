@@ -73,8 +73,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setTxt() {
-        val res = calc.result(firstKey)
-        binding.txtResult.text = calc.result(firstKey).toString()
+        var result = calc.result(firstKey).toString()
+        if(calc.numberOne==0.0 && calc.numberTwo==0.0) result=""
+        else if(result=="NaN") result=""
+        else if(result=="Infinity") result="Undefined"
+        binding.txtResult.text = result
     }
 
     private fun setButonBdColor(firstKey: CalculateKey, secondKey: CalculateKey) {
